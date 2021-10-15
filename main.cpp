@@ -1,8 +1,12 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QDebug>
 
 #include "./lib/controllerbackend.h"
+
+#include "pid/pid_controller.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -23,14 +27,17 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("plant", &controllerBackend);
 
-//    QObject::connect(&controllerBackend, &ControllerBackend::outputBytesChanged,
-//                     &testController, &TestController::computeBytes);
+    qDebug() << &engine;
+
+    pid_controller controller;
+
+    QObject::connect(&controllerBackend, &ControllerBackend::outputBytesChanged,
+                     &controller, &pid_controller::getMessage);
 
 //    QObject::connect(&testController, &TestController::computed,
 //                     &controllerBackend, &ControllerBackend::setInput);
 
     engine.load(url);
-
 
     return app.exec();
 }
