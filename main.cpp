@@ -34,8 +34,11 @@ int main(int argc, char *argv[])
     QObject::connect(&controllerBackend, &ControllerBackend::outputBytesChanged,
                      &controller, &pid_controller::getMessage);
 
-//    QObject::connect(&testController, &TestController::computed,
-//                     &controllerBackend, &ControllerBackend::setInput);
+    QObject::connect(&controller, &pid_controller::generatedReference,
+                     &controllerBackend, &ControllerBackend::setReferenceSignal);
+
+    QObject::connect(&controller, &pid_controller::generatedInput,
+                     &controllerBackend, &ControllerBackend::setInput);
 
     engine.load(url);
 
