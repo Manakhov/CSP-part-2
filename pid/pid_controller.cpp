@@ -2,12 +2,21 @@
 
 pid_controller::pid_controller(QObject *parent) : QObject(parent)
 {
-    qDebug() << sizeof(char);
-    qDebug() << sizeof(quint8);
-    qDebug() << sizeof(quint16);
-    qDebug() << sizeof(int);
-    qDebug() << sizeof(float);
-    qDebug() << sizeof(double);
+    m_file = new QFile(QDateTime::currentDateTime().toString("hh_mm_ss"));
+
+    if (!m_file->open(QIODevice::WriteOnly)){
+        qDebug() << "Failed";
+    }
+
+    m_stream = new QTextStream(m_file);
+}
+
+pid_controller::~pid_controller()
+{
+    m_file->close();
+
+    delete m_file;
+    delete m_stream;
 }
 
 void pid_controller::getMessage(QByteArray byteArray)
@@ -18,6 +27,8 @@ void pid_controller::getMessage(QByteArray byteArray)
     float data2;
     memcpy(&data1, byteArray.data() + 2, 4);
     memcpy(&data2, byteArray.data() + 6, 4);
+
+    *m_stream << data1 << " " << data2 << "\n";
 
     qDebug() << data1 << " " << data2;
 }
