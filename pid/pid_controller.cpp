@@ -21,6 +21,12 @@ pid_controller::~pid_controller()
 
 void pid_controller::getMessage(QByteArray byteArray)
 {
+    quint8 crc = 0;
+    for (quint8 i = 0; i < byteArray.size(); ++i) {
+        crc += byteArray[i];
+    }
+    if (crc != 0xFF) return;
+
     qDebug() << byteArray.toHex(' ');
 
     i++;
@@ -31,12 +37,6 @@ void pid_controller::getMessage(QByteArray byteArray)
 
     *m_stream << data1 << " " << data2 << "\n";
     qDebug() << data1 << " " << data2;
-
-    quint8 crc = 0;
-    for (quint8 i = 0; i < byteArray.size(); ++i) {
-        crc += byteArray[i];
-    }
-    if (crc != 0xFF) return;
 
     emit generatedReference(30 + 15 * std::cos(0.01 * i));
     emit generatedInput(data2);
