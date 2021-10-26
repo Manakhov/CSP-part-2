@@ -38,6 +38,6 @@ void pid_controller::getMessage(QByteArray byteArray)
     }
     if (crc != 0xFF) return;
 
-    emit generatedReference(50 + 25 * std::cos(0.01 * i));
-    emit generatedInput((data2 - data1) * 5);
+    emit generatedReference(30 + 15 * std::cos(0.01 * i));
+    emit generatedInput(data2);
 }
