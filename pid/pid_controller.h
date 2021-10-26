@@ -29,6 +29,17 @@ private:
     QTextStream* m_stream;
 
     quint16 i = 0;
+
+    float a_11 = 0.9141;
+    float a_12 = 0;
+    float a_21 = 0.01913;
+    float a_22 = 1;
+    float b_1 = 0.153;
+    float b_2 = 0.001553;
+    float c_1 = -3.296;
+    float c_2 = 3.005;
+    float d = 20.3;
+
 };
 
 #endif // PID_CONTROLLER_H
