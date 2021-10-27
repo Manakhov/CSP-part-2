@@ -34,15 +34,15 @@ private:
 
     quint16 i = 0;
 
-    float a_11 = 0.9141;
+    float a_11 = 0.6016;
     float a_12 = 0.0;
-    float a_21 = 0.01913;
+    float a_21 = 0.01568;
     float a_22 = 1.0;
-    float b_1 = 0.153;
-    float b_2 = 0.001553;
-    float c_1 = -3.296;
-    float c_2 = 3.005;
-    float d = 20.3;
+    float b_1 = 0.5018;
+    float b_2 = 0.005441;
+    float c_1 = -46.21;
+    float c_2 = 5.215;
+    float d = 74.28;
 
     float x_1 = 0.0;
     float x_2 = 0.0;
