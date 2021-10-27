@@ -17,6 +17,7 @@ public:
 
     float getOutput();
     float update(float u);
+    float filter(float f_u);
 
 signals:
     void generatedReference(float value);
@@ -46,6 +47,14 @@ private:
     float x_1 = 0.0;
     float x_2 = 0.0;
     float prev_u = 0.0;
+
+    float f_a = 0.8187;
+    float f_b =0.07251;
+    float f_c = 2.5;
+    float f_d = 0.0;
+
+    float f_x = 0.0;
+    float f_prev_u = 0.0;
 
 };
 
