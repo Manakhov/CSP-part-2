@@ -55,7 +55,7 @@ void pid_controller::getMessage(QByteArray byteArray)
     qDebug() << byteArray.toHex(' ');
 
     i++;
-    float t = i/50;
+    float t = float(i)/50;
     float data1;
     float data2;
     memcpy(&data1, byteArray.data() + 2, 4);
